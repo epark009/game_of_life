@@ -15,6 +15,7 @@ def main():
 	update_rate = 500
 	update_event_id = 24
 	animation = True
+	starting_cells = 1000
 
 	try:
 		f = open("init.txt", 'r')
@@ -35,6 +36,8 @@ def main():
 					animation = False
 				else:
 					animation = True
+			elif param[0] == "startingcells":
+				starting_cells = int(param[1])
 	except:
 		f = open("init.txt", "w")
 		f.write(
@@ -43,7 +46,8 @@ def main():
 			"cellsize=16\n" +
 			"fps=60\n" +
 			"updaterate=500\n" +
-			"animation=1\n"
+			"animation=1\n" +
+			"startingcells=1000\n"
 		)
 	
 	grid_size = (width/cell_size, height/cell_size)
@@ -54,7 +58,7 @@ def main():
 	message = "none"
 				
 
-	grid.randomize_cells(1000)
+	grid.randomize_cells(starting_cells)
 
 	pygame.init()
 
