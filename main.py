@@ -2,6 +2,7 @@ import pygame
 import grid as g
 import gameevent as e
 import canvas as c
+import random
 
 def main():
 	"""
@@ -9,7 +10,7 @@ def main():
 	Now with sweet colors and animation!
 	"""
 	
-	window_size = (width, height) = (800, 600)
+	(width, height) = (800, 600)
 	cell_size = 16
 	fps = 60
 	update_rate = 500
@@ -52,7 +53,7 @@ def main():
 	
 	grid_size = (width/cell_size, height/cell_size)
 	grid = g.Grid(grid_size)
-	canvas = c.Canvas(window_size, cell_size, grid_size, fps, animation)
+	canvas = c.Canvas((width, height), cell_size, grid_size, fps, animation)
 	events = e.GameEvent(update_event_id, fps, update_rate)
 	
 	message = "none"
@@ -69,6 +70,7 @@ def main():
 		if message == "update grid":
 			grid.update_cells()
 			canvas.draw_grid(grid, True)
+			grid.randomize_cells(random.choice(range(100)))
 		else:
 			canvas.draw_grid(grid, False)
 
