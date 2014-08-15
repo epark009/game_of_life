@@ -6,7 +6,6 @@ import canvas as c
 def main():
 	"""
 	Conway's Game of Life.
-	Now with sweet colors and animation!
 	"""
 	
 	(width, height) = (800, 600)
@@ -31,11 +30,6 @@ def main():
 				fps = int(param[1])
 			elif param[0] == "updaterate":
 				update_rate = int(param[1])
-			elif param[0] == "animation":
-				if int(param[1]) == 0:
-					animation = False
-				else:
-					animation = True
 			elif param[0] == "startingcells":
 				starting_cells = int(param[1])
 	except:
@@ -46,13 +40,12 @@ def main():
 			"cellsize=16\n" +
 			"fps=60\n" +
 			"updaterate=500\n" +
-			"animation=1\n" +
 			"startingcells=1000\n"
 		)
 	
 	grid_size = (width/cell_size, height/cell_size)
 	grid = g.Grid(grid_size)
-	canvas = c.Canvas((width, height), cell_size, grid_size, fps, animation)
+	canvas = c.Canvas((width, height), cell_size, grid_size)
 	events = e.GameEvent(update_event_id, fps, update_rate)
 	
 	message = "none"
