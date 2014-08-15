@@ -2,7 +2,6 @@ import pygame
 import grid as g
 import gameevent as e
 import canvas as c
-import random
 
 def main():
 	"""
@@ -70,7 +69,7 @@ def main():
 		if message == "update grid":
 			grid.update_cells()
 			canvas.draw_grid(grid, True)
-			grid.randomize_cells(random.choice(range(100)))
+			grid.randomize_cells(1)
 		else:
 			canvas.draw_grid(grid, False)
 
