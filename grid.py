@@ -33,10 +33,16 @@ class Grid:
 				pass
 
 	def add_cell(self, x, y):
-		self.grid[x][y] = True
+		try:
+			self.grid[x][y] = True
+		except IndexError:
+			pass
 
 	def remove_cell(self, x, y):
-		self.grid[x][y] = False
+		try:
+			self.grid[x][y] = False
+		except IndexError:
+			pass
 
 	def update_cells(self):
 		"""
