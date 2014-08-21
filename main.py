@@ -46,9 +46,11 @@ def main():
 	grid_size = (width/cell_size, height/cell_size)
 	grid = g.Grid(grid_size)
 	canvas = c.Canvas((width, height), cell_size, grid_size)
-	events = e.GameEvent(update_event_id, fps, update_rate)
+	events = e.GameEvent(update_event_id, fps, update_rate, grid, canvas)
 	
 	message = "none"
+	params = []
+	pause = False
 				
 
 	grid.randomize_cells(starting_cells)
@@ -57,14 +59,22 @@ def main():
 
 	# main game loop
 	while message != "quit":
-		message = events.run()
+		message, params = events.run()
 		
-		if message == "update grid":
+		if message == "update grid" and not pause:
 			grid.update_cells()
-			canvas.draw_grid(grid, True)
-			grid.randomize_cells(1)
+		elif message == "pause":
+			pause = True
+		elif message == "resume":
+			pause = False
+		elif message == "place cell":
+			grid.add_cell(*params)
+		elif message == "remove cell":
+			grid.remove_cell(*params)
 		else:
-			canvas.draw_grid(grid, False)
+			pass
+
+		canvas.draw_grid(grid, *params)
 
 if __name__ == "__main__":
 	main()

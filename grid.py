@@ -32,6 +32,12 @@ class Grid:
 			except IndexError:
 				pass
 
+	def add_cell(self, x, y):
+		self.grid[x][y] = True
+
+	def remove_cell(self, x, y):
+		self.grid[x][y] = False
+
 	def update_cells(self):
 		"""
 		uses the game of life algorithm to determine what the grid should look like next

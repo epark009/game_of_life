@@ -15,8 +15,9 @@ class Canvas:
 				
 		self.background = [15, 15, 15]
 		self.color = [255, 255, 255]
+		self.mouse_color = [50, 100, 255]
 		
-	def draw_grid(self, grid, reset):
+	def draw_grid(self, grid, mouse_x, mouse_y):
 		"""
 		draws the grid
 		"""
@@ -27,5 +28,7 @@ class Canvas:
 			for y in range(grid.height):
 				if grid.get(x, y):
 					pygame.draw.circle(self.screen, self.color, [x * self.cell_size, y * self.cell_size], self.cell_size/2)
+
+		pygame.draw.circle(self.screen, self.mouse_color, [mouse_x * self.cell_size, mouse_y * self.cell_size], self.cell_size/2)
 
 		pygame.display.flip()
