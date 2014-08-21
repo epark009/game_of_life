@@ -20,7 +20,10 @@ class Grid:
 		"""
 		returns x,y coordinate of grid
 		"""
-		return self.grid[x][y]
+		try:
+			return self.grid[x][y]
+		except:
+			return False
 
 	def randomize_cells(self, num_cells):
 		"""
